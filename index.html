@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberFortress</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+    <div class="noise"></div>
+
+    <canvas id="stage"></canvas>
+
+    <header class="hud">
+      <div class="brand-pill">CyberFortress</div>
+      <div class="hud-copy">Autonomous cybersecurity intelligence</div>
+      <button class="ghost-button" id="attackBtn">Simulate Attack</button>
+    </header>
+
+    <div class="progress-shell" aria-hidden="true">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">BOOT</div>
+    </div>
+
+    <main id="experience">
+      <section class="scene scene-boot" data-scene="0">
+        <div class="scene-copy boot-copy">
+          <div class="terminal-window glass">
+            <div class="terminal-bar">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot amber"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">secure boot</span>
+            </div>
+            <div class="terminal-body" id="terminalBody">
+              <div class="terminal-line" data-line="0"></div>
+              <div class="terminal-line" data-line="1"></div>
+              <div class="terminal-line terminal-cursor" data-line="2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="scene-hint">Scroll to initiate sequence</div>
+      </section>
+
+      <section class="scene scene-chaos" data-scene="1">
+        <div class="scene-copy left-aligned">
+          <div class="eyebrow">Threat convergence</div>
+          <h1>AI attacks spread faster than human response.</h1>
+          <p>Signal overload, supply chain contamination, and coordinated intrusion attempts begin collapsing the network into red noise.</p>
+        </div>
+      </section>
+
+      <section class="scene scene-core" data-scene="2">
+        <div class="scene-copy center-aligned">
+          <div class="core-frame glass">
+            <div class="eyebrow">Autonomous intelligence layer</div>
+            <h2>CyberFortress Activated</h2>
+            <p>The central defense core comes online, correlating threats in real time and preparing a coordinated response.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene scene-hero" data-scene="3">
+        <div class="scene-copy hero-copy">
+          <div class="eyebrow">Live defense simulation</div>
+          <h2>Detect. Correlate. Respond. Instantly.</h2>
+          <p>Incoming attacks are blocked, redirected, and neutralized as the network is restored node by node.</p>
+        </div>
+      </section>
+
+      <section class="scene scene-modules" data-scene="4">
+        <div class="scene-copy modules-copy">
+          <div class="eyebrow">System modules</div>
+          <div class="module-grid">
+            <article class="module-card glass" data-module="0">
+              <span class="module-tag">01</span>
+              <h3>AI Threat Detection</h3>
+              <p>Neural scoring maps anomalous activity before it escalates.</p>
+            </article>
+            <article class="module-card glass" data-module="1">
+              <span class="module-tag">02</span>
+              <h3>Event Correlation</h3>
+              <p>Distributed signals merge into one coherent attack picture.</p>
+            </article>
+            <article class="module-card glass" data-module="2">
+              <span class="module-tag">03</span>
+              <h3>Automated Response</h3>
+              <p>Defense actions deploy faster than an analyst can click.</p>
+            </article>
+            <article class="module-card glass" data-module="3">
+              <span class="module-tag">04</span>
+              <h3>Deception Grid</h3>
+              <p>Adaptive honeypots trap intrusions in a false digital terrain.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene scene-global" data-scene="5">
+        <div class="scene-copy center-aligned">
+          <div class="global-panel glass">
+            <div class="eyebrow">Global stabilization</div>
+            <h2>From reactive defense...</h2>
+            <h2 class="accent-line">To autonomous protection</h2>
+            <p>The network, once fractured, now holds a persistent blue state across every region.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene scene-finale" data-scene="6">
+        <div class="scene-copy finale-copy">
+          <div class="eyebrow">Final transmission</div>
+          <h1>CyberFortress is the Future of Cybersecurity</h1>
+          <p>Built for an autonomous era where defense sees, learns, and acts before the breach takes shape.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
