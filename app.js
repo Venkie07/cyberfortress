@@ -250,9 +250,16 @@ function startMetricFluctuation(element, baseValue, suffix, displaySuffix) {
 
 function animateMetrics() {
   const cards = document.querySelectorAll('.metric-card');
+  const finalCopy = document.querySelector('.scene-final .scene-copy');
+  if (finalCopy) {
+    finalCopy.classList.add('metrics-visible');
+  }
   
   // If already animated, don't run again
-  if (cards[0]?.dataset.animated === 'true') return;
+  if (cards[0]?.dataset.animated === 'true') {
+    gsap.set(cards, { opacity: 1, y: 0, scale: 1 });
+    return;
+  }
   
   gsap.from(cards, {
     opacity: 0,
@@ -390,15 +397,20 @@ function setupSceneAnimations() {
           gsap.from('.cta-button', { opacity: 0, scale: 0.88, duration: 0.8, delay: 0.4, ease: 'elastic.out(1.2, 0.6)' });
           
           const cards = scene.querySelectorAll('.metric-card');
-          gsap.from(cards, {
-            opacity: 0,
-            scale: 0.82,
-            y: 28,
-            duration: 0.8,
-            stagger: 0.14,
-            ease: 'back.out',
-            delay: 0.2,
-          });
+          if (scene.dataset.cardsAnimated !== 'true') {
+            scene.dataset.cardsAnimated = 'true';
+            gsap.from(cards, {
+              opacity: 0,
+              scale: 0.82,
+              y: 28,
+              duration: 0.8,
+              stagger: 0.14,
+              ease: 'back.out',
+              delay: 0.2,
+            });
+          } else {
+            gsap.set(cards, { opacity: 1, y: 0, scale: 1 });
+          }
         }
         
         const visuals = scene.querySelectorAll('.scene-visual');

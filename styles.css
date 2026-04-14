@@ -237,6 +237,17 @@ button {
   transform: translateY(0) scale(1);
 }
 
+.scene-final .scene-copy.metrics-visible {
+  opacity: 1 !important;
+  filter: blur(0) !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.scene-final .metric-card {
+  opacity: 1;
+  transform: none;
+}
+
 .glass {
   border: 1px solid rgba(140, 192, 255, 0.16);
   background: linear-gradient(180deg, rgba(11, 18, 32, 0.66), rgba(5, 9, 16, 0.48));
