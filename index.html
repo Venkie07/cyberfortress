@@ -1,123 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CyberFortress</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <div class="scanlines"></div>
-    <div class="vignette"></div>
-    <div class="noise"></div>
+  <!-- CINEMATIC INTRO EXPERIENCE -->
+  <div class="app-shell" id="appShell">
+    <div class="fx fx-scanlines"></div>
+    <div class="fx fx-vignette"></div>
+    <div class="fx fx-noise"></div>
+    <div class="fx fx-glitch" id="glitchFx"></div>
 
-    <canvas id="stage"></canvas>
+    <canvas id="world" aria-hidden="true"></canvas>
+    <div class="pointer-light" id="pointerLight" aria-hidden="true"></div>
 
     <header class="hud">
-      <div class="brand-pill">CyberFortress</div>
-      <div class="hud-copy">Autonomous cybersecurity intelligence</div>
-      <button class="ghost-button" id="attackBtn">Simulate Attack</button>
+      <div class="brand-chip">CyberFortress</div>
+      <div class="hud-copy">AI-driven autonomous cybersecurity platform</div>
+      <button class="hud-button" id="replayBtn" type="button">Home</button>
     </header>
 
-    <div class="progress-shell" aria-hidden="true">
-      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-      <div class="progress-label" id="progressLabel">BOOT</div>
+    <main id="story">
+      <!-- BOOT SEQUENCE - CENTERED -->
+      <section class="scene scene-intro active" data-scene="0">
+        <div class="boot-container">
+          <div class="boot-content">
+            <div class="boot-eyebrow">Boot sequence</div>
+            <h1 class="boot-title"><span id="brandText"></span><span class="boot-cursor"></span></h1>
+            <p class="boot-subtitle">AI-Driven Autonomous Cybersecurity Platform</p>
+            <div class="boot-terminal">
+              <div class="boot-line" id="bootLine0"></div>
+              <div class="boot-line" id="bootLine1"></div>
+              <div class="boot-line" id="bootLine2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-hint"></div>
+      </section>
+
+      <section class="scene scene-threat" data-scene="1">
+        <div class="scene-copy left-copy">
+          <div class="eyebrow">Threat simulation</div>
+          <h2>Millions of threats. Every second.</h2>
+        </div>
+        <div class="scene-visual threat-visual glass">
+          <div class="visual-overlay">
+            <div class="visual-stat">
+              <span class="visual-stat-label">Live traffic</span>
+              <span class="visual-stat-value">12.8M/sec</span>
+            </div>
+            <div class="visual-stat">
+              <span class="visual-stat-label">Blocked in flight</span>
+              <span class="visual-stat-value">10.9K</span>
+            </div>
+          </div>
+          <div class="world-grid"></div>
+          <div class="attack-scan"></div>
+          <div class="signal-pips">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene scene-detect" data-scene="2">
+        <div class="scene-copy center-copy">
+          <div class="eyebrow">AI detection engine</div>
+          <h2>AI identifies threats instantly</h2>
+        </div>
+        <div class="scene-visual detect-visual glass">
+          <div class="neural-core">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="neural-web">
+            <i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene scene-decision" data-scene="3">
+        <div class="scene-copy center-copy">
+          <div class="eyebrow">Decision system</div>
+          <h2>Confidence-based response system</h2>
+        </div>
+        <div class="decision-stage glass">
+          <div class="decision-pane blocked">
+            <span class="decision-label">BLOCKED</span>
+            <div class="decision-value">10,984</div>
+            <div class="decision-waves"></div>
+          </div>
+          <div class="decision-divider"></div>
+          <div class="decision-pane warned">
+            <span class="decision-label">WARNED</span>
+            <div class="decision-value">1,260</div>
+            <div class="decision-waves"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene scene-response" data-scene="4">
+        <div class="scene-copy left-copy">
+          <div class="eyebrow">Autonomous response</div>
+          <h2>Responds without human delay</h2>
+        </div>
+        <div class="response-shell glass">
+          <div class="shield-ring ring-a"></div>
+          <div class="shield-ring ring-b"></div>
+          <div class="firewall-lattice"></div>
+        </div>
+      </section>
+
+      <section class="scene scene-learn" data-scene="5">
+        <div class="scene-copy center-copy">
+          <div class="eyebrow">Learning system</div>
+          <h2>Learns. Adapts. Improves.</h2>
+        </div>
+        <div class="learning-stage glass">
+          <div class="learning-core"></div>
+          <div class="data-streams">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene scene-final" data-scene="6">
+        <div class="scene-copy final-copy glass">
+          <div class="eyebrow">Final scene</div>
+          <div class="final-mark">CyberFortress</div>
+          <h2>The Future of Cyber Defense</h2>
+          <div class="launch-metrics" aria-label="CyberFortress performance metrics">
+            <div class="metric-card glass">
+              <span class="metric-value" data-count="128" data-suffix="K">0K</span>
+              <span class="metric-label">Threats observed</span>
+            </div>
+            <div class="metric-card glass">
+              <span class="metric-value" data-count="2.4" data-suffix="ms">0ms</span>
+              <span class="metric-label">Response latency</span>
+            </div>
+            <div class="metric-card glass">
+              <span class="metric-value" data-count="99.98" data-suffix="%">0%</span>
+              <span class="metric-label">Containment rate</span>
+            </div>
+            <div class="metric-card glass">
+              <span class="metric-value" data-count="847" data-suffix="">0</span>
+              <span class="metric-label">Nodes protected</span>
+            </div>
+            <div class="metric-card glass">
+              <span class="metric-value" data-count="18.7" data-suffix="K">0K</span>
+              <span class="metric-label">Threats blocked</span>
+            </div>
+            <div class="metric-card glass">
+              <span class="metric-value" data-count="432" data-suffix="">0</span>
+              <span class="metric-label">Alerts warned</span>
+            </div>
+          </div><br>
+          <button class="cta-button" id="ctaBtn" type="button">Launch CyberFortress</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- FULLSCREEN LOADING TRANSITION -->
+  <div class="loading-screen" id="loadingScreen" aria-hidden="true">
+    <div class="loading-content">
+      <div class="loading-logo">CyberFortress</div>
+      <div class="loading-text">Initializing System...</div>
+      <div class="loading-progress">
+        <div class="progress-bar">
+          <span class="progress-fill"></span>
+        </div>
+      </div>
+      <div class="loading-logs">
+        <div class="log-entry" id="log1">> Connecting to nodes...</div>
+        <div class="log-entry" id="log2">> Activating defense grid...</div>
+        <div class="log-entry" id="log3">> AI calibration in progress...</div>
+        <div class="log-entry" id="log4">> System ready.</div>
+      </div>
     </div>
+  </div>
 
-    <main id="experience">
-      <section class="scene scene-boot" data-scene="0">
-        <div class="scene-copy boot-copy">
-          <div class="terminal-window glass">
-            <div class="terminal-bar">
-              <span class="terminal-dot red"></span>
-              <span class="terminal-dot amber"></span>
-              <span class="terminal-dot green"></span>
-              <span class="terminal-title">secure boot</span>
-            </div>
-            <div class="terminal-body" id="terminalBody">
-              <div class="terminal-line" data-line="0"></div>
-              <div class="terminal-line" data-line="1"></div>
-              <div class="terminal-line terminal-cursor" data-line="2"></div>
-            </div>
+  <!-- INTERACTIVE DASHBOARD -->
+  <div class="dashboard" id="dashboard" aria-hidden="true">
+    <div class="dashboard-bg"></div>
+    
+    <!-- Top Bar -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <div class="dashboard-logo">CyberFortress</div>
+        <div class="system-status">
+          <span class="status-dot"></span>
+          <span class="status-text">System Active</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="live-time" id="liveTime">00:00:00</div>
+        <button class="dashboard-home-button" id="dashboardHomeBtn" type="button">Home</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Left Column: Stats Cards -->
+      <section class="stats-section">
+        <div class="stat-card">
+          <div class="stat-label">Threats Detected</div>
+          <div class="stat-value" id="statThreats">0</div>
+          <div class="stat-bar"><span id="threatBar"></span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Attacks Blocked</div>
+          <div class="stat-value" id="statBlocked">0</div>
+          <div class="stat-bar"><span id="blockedBar"></span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Warnings</div>
+          <div class="stat-value" id="statWarnings">0</div>
+          <div class="stat-bar"><span id="warningBar"></span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Active Nodes</div>
+          <div class="stat-value" id="statNodes">0</div>
+          <div class="stat-bar"><span id="nodesBar"></span></div>
+        </div>
+      </section>
+
+      <!-- Center: Network Visualization -->
+      <section class="network-section">
+        <div class="network-panel">
+          <div class="network-header">
+            <div class="eyebrow">Defense mesh</div>
+            <h3>Live node topology</h3>
+          </div>
+          <canvas id="networkCanvas" class="network-canvas"></canvas>
+        </div>
+      </section>
+
+      <!-- Right Column: Attack Feed & AI Status -->
+      <section class="feed-section">
+        <div class="feed-panel">
+          <h3 class="feed-title">Live Attack Feed</h3>
+          <div class="feed-scroll" id="feedScroll">
+            <!-- Logs populated by JS -->
           </div>
         </div>
-        <div class="scene-hint">Scroll to initiate sequence</div>
-      </section>
-
-      <section class="scene scene-chaos" data-scene="1">
-        <div class="scene-copy left-aligned">
-          <div class="eyebrow">Threat convergence</div>
-          <h1>AI attacks spread faster than human response.</h1>
-          <p>Signal overload, supply chain contamination, and coordinated intrusion attempts begin collapsing the network into red noise.</p>
-        </div>
-      </section>
-
-      <section class="scene scene-core" data-scene="2">
-        <div class="scene-copy center-aligned">
-          <div class="core-frame glass">
-            <div class="eyebrow">Autonomous intelligence layer</div>
-            <h2>CyberFortress Activated</h2>
-            <p>The central defense core comes online, correlating threats in real time and preparing a coordinated response.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="scene scene-hero" data-scene="3">
-        <div class="scene-copy hero-copy">
-          <div class="eyebrow">Live defense simulation</div>
-          <h2>Detect. Correlate. Respond. Instantly.</h2>
-          <p>Incoming attacks are blocked, redirected, and neutralized as the network is restored node by node.</p>
-        </div>
-      </section>
-
-      <section class="scene scene-modules" data-scene="4">
-        <div class="scene-copy modules-copy">
-          <div class="eyebrow">System modules</div>
-          <div class="module-grid">
-            <article class="module-card glass" data-module="0">
-              <span class="module-tag">01</span>
-              <h3>AI Threat Detection</h3>
-              <p>Neural scoring maps anomalous activity before it escalates.</p>
-            </article>
-            <article class="module-card glass" data-module="1">
-              <span class="module-tag">02</span>
-              <h3>Event Correlation</h3>
-              <p>Distributed signals merge into one coherent attack picture.</p>
-            </article>
-            <article class="module-card glass" data-module="2">
-              <span class="module-tag">03</span>
-              <h3>Automated Response</h3>
-              <p>Defense actions deploy faster than an analyst can click.</p>
-            </article>
-            <article class="module-card glass" data-module="3">
-              <span class="module-tag">04</span>
-              <h3>Deception Grid</h3>
-              <p>Adaptive honeypots trap intrusions in a false digital terrain.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="scene scene-global" data-scene="5">
-        <div class="scene-copy center-aligned">
-          <div class="global-panel glass">
-            <div class="eyebrow">Global stabilization</div>
-            <h2>From reactive defense...</h2>
-            <h2 class="accent-line">To autonomous protection</h2>
-            <p>The network, once fractured, now holds a persistent blue state across every region.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="scene scene-finale" data-scene="6">
-        <div class="scene-copy finale-copy">
-          <div class="eyebrow">Final transmission</div>
-          <h1>CyberFortress is the Future of Cybersecurity</h1>
-          <p>Built for an autonomous era where defense sees, learns, and acts before the breach takes shape.</p>
+        <div class="ai-panel">
+          <h3 class="ai-title">AI Status</h3>
+          <div class="ai-text" id="aiStatus">Analyzing traffic patterns...</div>
         </div>
       </section>
     </main>
@@ -125,7 +258,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
-  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r161/three.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
